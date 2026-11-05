@@ -1,0 +1,41 @@
+# Edit these first
+title: All my circuits
+subtitle: Notes on whatever I'm taking apart this week.
+description: A personal blog about software, security and things I'm learning.
+author: Florin Burcea
+url: https://tensor-goat.github.io
+timezone: Europe/Bucharest
+language: en
+
+# You can leave everything below as it is
+theme: blueprint
+root: /
+permalink: :year/:month/:day/:title/
+new_post_name: :title.md
+source_dir: source
+public_dir: public
+default_layout: post
+
+index_generator:
+  path: ''
+  per_page: 15
+  order_by: -date
+
+tag_generator:
+  per_page: 0
+
+pagination_dir: page
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: '    '
+  wrap: true
+  hljs: true

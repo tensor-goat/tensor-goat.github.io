@@ -1,0 +1,22 @@
+<h1 class="page-heading">Archive for "<%= page.tag %>"</h1>
+
+<%
+  var years = {};
+  page.posts.each(function (post) {
+    var y = date(post.date, 'YYYY');
+    (years[y] = years[y] || []).push(post);
+  });
+%>
+<% Object.keys(years).sort().reverse().forEach(function (year) { %>
+  <section class="archive-year">
+    <h2><%= year %></h2>
+    <ul class="archive">
+      <% years[year].forEach(function (post) { %>
+        <li>
+          <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'MMM DD') %></time>
+          <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+        </li>
+      <% }); %>
+    </ul>
+  </section>
+<% }); %>

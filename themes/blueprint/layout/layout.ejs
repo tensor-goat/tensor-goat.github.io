@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="<%= config.language %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%
+    var pageTitle = config.title;
+    if (is_tag()) pageTitle = 'Posts tagged "' + page.tag + '" | ' + config.title;
+    else if (page.title) pageTitle = page.title + ' | ' + config.title;
+  %>
+  <title><%= pageTitle %></title>
+  <%- open_graph({ title: pageTitle, twitter_card: 'summary' }) %>
+  <%- css('css/fonts.css') %>
+  <%- css('css/style.css') %>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="<%- url_for('/') %>">
+        <span class="mark" aria-hidden="true"><%= config.title.charAt(0) %></span>
+        <span class="brand-text">
+          <span class="brand-title"><%= config.title %></span>
+          <span class="brand-subtitle"><%= config.subtitle %></span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="<%- url_for('/') %>">Home</a>
+        <a href="<%- url_for(config.feed.path) %>">RSS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="wrap">
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="links">
+        <% Object.keys(theme.social || {}).forEach(function (name) { %>
+          <a href="<%- theme.social[name] %>"><%= name %></a>
+        <% }); %>
+      </p>
+      <p>&copy; <%= date(Date.now(), 'YYYY') %> <%= config.author %>. Powered by <a href="https://hexo.io">Hexo</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

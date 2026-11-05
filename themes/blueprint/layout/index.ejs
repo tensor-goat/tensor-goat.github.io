@@ -1,0 +1,38 @@
+<% if (page.current === 1) { %>
+  <section class="intro">
+    <h1><%= config.title %></h1>
+    <p><%- theme.intro %></p>
+    <% if (theme.social) { %>
+      <p class="links">
+        <span>Find me on</span>
+        <% Object.keys(theme.social).forEach(function (name) { %>
+          <a href="<%- theme.social[name] %>"><%= name %></a>
+        <% }); %>
+      </p>
+    <% } %>
+  </section>
+<% } else { %>
+  <h1 class="page-heading">Older posts</h1>
+<% } %>
+
+<ul class="post-list">
+  <% page.posts.each(function (post) { %>
+    <li>
+      <a href="<%- url_for(post.path) %>">
+        <span class="post-list-title"><%= post.title %></span>
+        <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'DD MMM YYYY') %></time>
+        <span class="read-more">Read more</span>
+      </a>
+    </li>
+  <% }); %>
+</ul>
+
+<nav class="pager" aria-label="Pages">
+  <span>
+    <% if (page.prev) { %><a href="<%- url_for(page.prev_link) %>">Newer posts</a><% } %>
+  </span>
+  <span class="pager-count">Page <%= page.current %> of <%= page.total %></span>
+  <span class="pager-end">
+    <% if (page.next) { %><a href="<%- url_for(page.next_link) %>">Older posts</a><% } %>
+  </span>
+</nav>

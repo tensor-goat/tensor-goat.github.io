@@ -1,0 +1,56 @@
+<article class="post">
+  <header class="post-header">
+    <h1><%= page.title %></h1>
+    <p class="post-meta">
+      By <%= config.author %> &mdash; <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'DD MMM YYYY') %></time>
+      <% if (page.tags && page.tags.length) { %>
+        &mdash;
+        <% page.tags.each(function (tag, i) { %><%- i ? ', ' : '' %><a href="<%- url_for(tag.path) %>"><%= tag.name %></a><% }); %>
+      <% } %>
+    </p>
+  </header>
+
+  <div class="prose">
+    <%- page.content %>
+  </div>
+
+  <% if (page.tags && page.tags.length) { %>
+    <p class="hashtags">
+      <% page.tags.each(function (tag) { %><a href="<%- url_for(tag.path) %>">#<%= tag.name %></a> <% }); %>
+    </p>
+  <% } %>
+</article>
+
+<% if (page.prev || page.next) { %>
+  <nav class="post-nav" aria-label="More posts">
+    <% if (page.prev) { %>
+      <a href="<%- url_for(page.prev.path) %>"><span>Newer</span><%= page.prev.title %></a>
+    <% } else { %><span></span><% } %>
+    <% if (page.next) { %>
+      <a class="post-nav-older" href="<%- url_for(page.next.path) %>"><span>Older</span><%= page.next.title %></a>
+    <% } %>
+  </nav>
+<% } %>
+
+<%
+  var tagNames = page.tags ? page.tags.map(function (t) { return t.name; }) : [];
+  var related = site.posts.sort('date', -1).toArray().filter(function (p) {
+    return p.path !== page.path && p.tags.toArray().some(function (t) { return tagNames.indexOf(t.name) !== -1; });
+  }).slice(0, 4);
+%>
+<% if (related.length) { %>
+  <section class="related">
+    <h2>You might also like</h2>
+    <ul class="post-list">
+      <% related.forEach(function (post) { %>
+        <li>
+          <a href="<%- url_for(post.path) %>">
+            <span class="post-list-title"><%= post.title %></span>
+            <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'DD MMM YYYY') %></time>
+            <span class="read-more">Read more</span>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  </section>
+<% } %>
