@@ -39,3 +39,8 @@ highlight:
   tab_replace: '    '
   wrap: true
   hljs: true
+
+post_asset_folder: true
+marked:
+  gfm: true
+  breaks: false
