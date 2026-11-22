@@ -6,6 +6,7 @@ tags:
   - information theory
   - arithmetic coding
   - AIXI
+  - mostly AI Generated content
 ---
 
 <link rel="stylesheet" href="{% asset_path compression.css %}">

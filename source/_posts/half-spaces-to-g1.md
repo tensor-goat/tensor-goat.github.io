@@ -4,6 +4,7 @@ date: 2026-11-07 16:00:00
 tags:
   - neurons
   - linear-algebra
+  - mostly AI Generated content
 ---
 
 This post builds a neural network up one picture at a time, in the style of Margalit and Rabinoff's [*Interactive Linear Algebra*](https://textbooks.math.gatech.edu/ila/). It starts with a single perceptron, which can only cut the plane in half. Then it stacks perceptrons into an MLP, adds a second hidden layer, and finally steps sideways to G1, a neuron that grows its own bends. Every picture is interactive.

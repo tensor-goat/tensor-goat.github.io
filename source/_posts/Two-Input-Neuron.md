@@ -2,7 +2,7 @@
 layout: post
 title: Two Input Neuron
 date: 2026-11-15 02:19:05
-tags:
+tags: AI, Neurons, Gated-Neurons
 ---
 
 Recently, I was probing with Opus 5.5 on how the SwiGLU and other gated MLP's work.
@@ -22,7 +22,7 @@ I asked it to give me a version where the expressive neurons are into the first 
 ## Result
 
 1-layered "gated" MLP...
-
+(AI generated content)
 <video autoplay muted loop playsinline width="100%">
   <source src="one-neuron-xor.mp4" type="video/mp4">
 </video>
